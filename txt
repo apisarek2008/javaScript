@@ -1,0 +1,2 @@
+// https://stackoverflow.com/questions/65821206/how-to-read-txt-file-and-save-it-in-array-in-javascript-in-html
+// https://www.youtube.com/watch?v=-q1z8BPFItw - debugger

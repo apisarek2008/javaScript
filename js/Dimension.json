@@ -1,0 +1,20 @@
+    {
+        "Sample": null,
+            "SampleNumber": null,
+            "Date": "",
+            "Time": "",
+        
+            "Dimension":[{
+                
+                "Comment": "",
+                "Description": "",
+                "Axis": "",
+                "Nominal": null,
+                "Tol+": null,
+                "Tol-": null,
+                "Measured": null,
+                "Deviation": null,
+                "OutOfTol": null
+
+        }]
+    }
