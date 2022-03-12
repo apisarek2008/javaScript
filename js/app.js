@@ -1,5 +1,25 @@
 var file = document.getElementById("inputfile");
 
+const Measurements = {
+        "SampleNumber" : null,
+        "Date" : "",
+        "Time" : "",
+    
+        "Dimension":[{
+            
+            "Comment" : "",
+            "Description" : "",
+            "Axis" : "",
+            "Nominal" : null,
+            "TolPlus" : null,
+            "TolMinus" : null,
+            "Measured" : null,
+            "Deviation" : null,
+            "OutOfTol" : null
+
+    }]
+}
+
 file.addEventListener("change",() => {
     const txtArr = [];
     const fr = new FileReader();
@@ -20,29 +40,8 @@ file.addEventListener("change",() => {
         let strTime;
         let strDate;
 
-        const Measurements = {
-            "Sample" : null,
-                "SampleNumber" : null,
-                "Date" : "",
-                "Time" : "",
-            
-                "Dimension":[{
-                    
-                    "Comment" : "",
-                    "Description" : "",
-                    "Axis" : "",
-                    "Nominal" : null,
-                    "Tol+" : null,
-                    "Tol-" : null,
-                    "Measured" : null,
-                    "Deviation" : null,
-                    "OutOfTol" : null
-    
-            }]
-        }
-
             for (let i = 0; i < txtArr.length; i++){
-               
+                Measurements.SampleNumber = i;
                 
                 const str = txtArr[i].toString().substr(0,3);
                 
@@ -75,11 +74,34 @@ file.addEventListener("change",() => {
                         if(tempStrFirst == "$" && strEND !== "$END$"){
                             
                             finalArr.push(tempStr);
-                            Measurements.Dimension.Comment = tempStr;
+                            Measurements.Comment = tempStr[0];
+                            
                             break;
                         }else{
                                 if(str !== " " && strEND !== "$END$"){
-                                finalArr.push(tempArr[item]);
+                                switch(item){
+                                    case 3:
+                                    Measurements.Dimension.Axis = tempStr[3];
+                                    break;
+                                    case 4:
+                                    Measurements.Dimension.Nominal = tempStr[4];
+                                    break;
+                                    case 5:
+                                    Measurements.Dimension.TolPlus = tempStr[5];
+                                    break;
+                                    case 6:
+                                    Measurements.Dimension.TolMinus = tempStr[6];
+                                    break;
+                                    case 7:
+                                    Measurements.Dimension.Measured = tempStr[7];
+                                    break;
+                                    case 8:
+                                    Measurements.Dimension.OutOfTol = tempStr[8];
+                                    break;
+                                   
+                                }
+                                    
+                                finalArr.push(Measurements[item]);
                             }
 
                         }
@@ -99,8 +121,6 @@ function arrToJson(finalArr) {
 
     for (let x = 0; x < finalArr.length; x++) {
         
-        Measurements.Date = finalArr[x];
-        Measurements.Time = finalArr[x + 1];
         
         console.log("finalArr --> " + finalArr[x]);
        
