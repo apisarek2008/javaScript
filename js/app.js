@@ -19,7 +19,7 @@ file.addEventListener("change",() => {
         let flag = false;
         let strTime;
         let strDate;
-
+        let measurementsObject = [];
         const Measurements = {
             "Sample" : null,
                 "SampleNumber" : null,
@@ -89,7 +89,8 @@ file.addEventListener("change",() => {
                            
             }
             arrToJson(finalArr);
-            
+          
+
     }
 });	
 
@@ -99,8 +100,8 @@ function arrToJson(finalArr) {
 
     for (let x = 0; x < finalArr.length; x++) {
         
-        Measurements.Date = finalArr[x];
-        Measurements.Time = finalArr[x + 1];
+        //Measurements.Date = finalArr[x];
+        //Measurements.Time = finalArr[x + 1];
         
         console.log("finalArr --> " + finalArr[x]);
        
