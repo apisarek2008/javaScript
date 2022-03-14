@@ -1,4 +1,5 @@
 var file = document.getElementById("inputfile");
+let finalArr = [];
 
 const Measurements = {
         "SampleNumber" : null,
@@ -8,7 +9,7 @@ const Measurements = {
         "Dimension":[{
             
             "Comment" : "",
-            "Description" : "",
+            "Description": "",
             "Axis" : "",
             "Nominal" : null,
             "TolPlus" : null,
@@ -35,30 +36,30 @@ file.addEventListener("change",() => {
     }
     fr.onloadend = function() {
         let tempArr = [];
-        let finalArr = [];
+        
         let flag = false;
         let strTime;
         let strDate;
 
             for (let i = 0; i < txtArr.length; i++){
-                Measurements.SampleNumber = i;
                 
                 const str = txtArr[i].toString().substr(0,3);
                 
                 if (str === "C22"){
                     strTime = txtArr[i].toString().substr(4,10);
-                    finalArr.push(strTime);
+                    //finalArr.push(strTime);
                     Measurements.Time = strTime;
                 }
                 if (str === "C21"){
                     strDate = txtArr[i].toString().substr(4,10);
-                    finalArr.push(strDate);
+                    //finalArr.push(strDate);
                     Measurements.Date = strDate;
                 }
 
                 if (str === "$EN"){
                     if(flag === false){
                         flag = true;
+                        Measurements.SampleNumber = i;
                     }else{
                         flag = false;
                     }
@@ -72,8 +73,7 @@ file.addEventListener("change",() => {
 
                     for (var item = 0; item < tempArr.length; item++) {
                         if(tempStrFirst == "$" && strEND !== "$END$"){
-                            
-                            finalArr.push(tempStr);
+                           
                             Measurements.Comment = tempStr[0];
                             
                             break;
@@ -101,14 +101,15 @@ file.addEventListener("change",() => {
                                    
                                 }
                                     
-                                finalArr.push(Measurements[item]);
+                                
                             }
 
                         }
+
                         
                     }
                 }
-                           
+                finalArr.push(Measurements[item]);            
             }
             arrToJson(finalArr);
             
