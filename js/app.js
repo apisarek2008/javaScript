@@ -106,10 +106,12 @@ file.addEventListener("change",() => {
 
                         }
 
+                        finalArr.push(Measurements[item]);
                         
                     }
                 }
-                finalArr.push(Measurements[item]);            
+                
+
             }
             arrToJson(finalArr);
             
