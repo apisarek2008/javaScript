@@ -1,7 +1,7 @@
 var file = document.getElementById("inputfile");
 let finalArr = [];
 
-const Measurements = {
+var Measurements = {
         "SampleNumber" : null,
         "Date" : "",
         "Time" : "",
@@ -104,13 +104,32 @@ file.addEventListener("change",() => {
                                 }
                                     
                                 
+
                             }
-
+                            
                         }
-
+                    }
+                    if (numberOfSamples !== 0 || numberOfSamples !== undefined) {
                         finalArr.push(Measurements[numberOfSamples]);
-                        Measurements = [];
-                        
+                                    new Measurements = {
+                                        "SampleNumber" : null,
+                                        "Date" : "",
+                                        "Time" : "",
+                                    
+                                        "Dimension":[{
+                                            
+                                            "Comment" : "",
+                                            "Description": "",
+                                            "Axis" : "",
+                                            "Nominal" : null,
+                                            "TolPlus" : null,
+                                            "TolMinus" : null,
+                                            "Measured" : null,
+                                            "Deviation" : null,
+                                            "OutOfTol" : null
+                            
+                                        }]
+                                    }
                     }
                 }
                 
@@ -119,7 +138,8 @@ file.addEventListener("change",() => {
             arrToJson(finalArr);
             
     }
-});	
+});
+
 
 function arrToJson(finalArr) {
 
