@@ -40,6 +40,7 @@ file.addEventListener("change",() => {
         let flag = false;
         let strTime;
         let strDate;
+        let numberOfSamples = 0;
 
             for (let i = 0; i < txtArr.length; i++){
                 
@@ -59,7 +60,8 @@ file.addEventListener("change",() => {
                 if (str === "$EN"){
                     if(flag === false){
                         flag = true;
-                        Measurements.SampleNumber = i;
+                        numberOfSamples++
+                        Measurements.SampleNumber = numberOfSamples;
                     }else{
                         flag = false;
                     }
@@ -106,7 +108,8 @@ file.addEventListener("change",() => {
 
                         }
 
-                        finalArr.push(Measurements[item]);
+                        finalArr.push(Measurements[numberOfSamples]);
+                        Measurements = [];
                         
                     }
                 }
